@@ -1,6 +1,5 @@
 package com.example.library.online_library.entities;
 
-import com.example.library.online_library.dtos.Book;
 import com.example.library.online_library.enums.Status;
 
 import jakarta.persistence.Entity;
@@ -27,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Copy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     
     @Enumerated(EnumType.STRING)
     private Status status;

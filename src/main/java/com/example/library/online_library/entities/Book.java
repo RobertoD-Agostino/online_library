@@ -1,13 +1,13 @@
-package com.example.library.online_library.dtos;
+package com.example.library.online_library.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 
 @Data
@@ -17,13 +17,19 @@ import jakarta.persistence.Table;
 @Table(name = "books")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 	
+    @Column(name = "title")
     private String title;
+    @Column(name = "author")
     private String author;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "year")
     private int year;
+    @Column(name = "price")
     private double price;
-    private String isbn;
+    @Column(name = "isbn", nullable = false, unique = true)
+    private int isbn;
 }

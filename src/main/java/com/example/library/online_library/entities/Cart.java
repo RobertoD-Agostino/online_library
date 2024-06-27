@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

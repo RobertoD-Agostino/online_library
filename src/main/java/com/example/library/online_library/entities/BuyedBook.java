@@ -2,8 +2,6 @@ package com.example.library.online_library.entities;
 
 import java.util.Date;
 
-import com.example.library.online_library.dtos.User;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +14,6 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -27,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class BuyedBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "copy_id")

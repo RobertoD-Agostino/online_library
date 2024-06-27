@@ -2,30 +2,38 @@ package com.example.library.online_library.entities;
 
 import java.util.List;
 
-import com.example.library.online_library.dtos.User;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper=true)
 @Table(name = "admin")
-public class Admin extends User {
+public class Admin{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @OneToMany(mappedBy = "admin")
+    @Column(name = "fullName")
+    private String fullName;
+    
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+    
+    @Column(name = "password")
+    private String password;
+    
+    @OneToMany
+    @JoinColumn(name = "rental_request_list")
     private List<RentalRequest> rentalRequestsToApprove;
 }

@@ -25,7 +25,7 @@ import java.util.List;
 public class RentalRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Temporal(TemporalType.DATE)
     private Date startDate;
@@ -43,6 +43,7 @@ public class RentalRequest {
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
-    @OneToMany(mappedBy = "rentalRequest")
+    @OneToMany
+    @JoinColumn(name = "rented_books")
     private List<RentedBook> rentedBooks;
 }

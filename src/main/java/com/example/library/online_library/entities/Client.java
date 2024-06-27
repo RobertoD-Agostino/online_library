@@ -2,19 +2,19 @@ package com.example.library.online_library.entities;
 
 import java.util.List;
 
-import com.example.library.online_library.dtos.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -22,9 +22,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper=true)
 @Table(name = "client")
-public class Client extends User{
+public class Client{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -33,7 +32,7 @@ public class Client extends User{
     @Column(name = "fullName")
     private String fullName;
     
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     
     @Column(name = "password")
@@ -42,12 +41,18 @@ public class Client extends User{
     @Column(name = "budget")
     private Double budget;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "rented_book_list")
+    @JsonIgnore
     private List<RentedBook> rentedBooks;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "buyed_book_list")
+    @JsonIgnore
     private List<BuyedBook> buyedBooks;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany
+    @JoinColumn(name = "rental_request_list")
+    @JsonIgnore
     private List<RentalRequest> rentalRequests;
 }

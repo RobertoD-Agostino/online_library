@@ -13,7 +13,17 @@ public class ClientService {
 	
 	private final ClientRepository clientRepo;
 	
-	public Client addClient(Client client) {
-		return clientRepo.save(client);
+	public Client modifyClient(String email, String newFullName, String newEmail, String newPassword, Double newBudget)throws RuntimeException {
+		Client client = clientRepo.findByEmail(email).orElseThrow();
+		if (client!=null) {
+			client.setFullName(newFullName);
+			client.setEmail(newEmail);
+			client.setPassword(newPassword);
+			client.setBudget(newBudget);
+			return clientRepo.save(client);
+		}else {
+			throw new RuntimeException();
+		}
+
 	}
 }

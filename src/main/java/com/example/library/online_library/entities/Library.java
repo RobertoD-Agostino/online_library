@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @OneToMany
     @JoinColumn(name = "library_id")
